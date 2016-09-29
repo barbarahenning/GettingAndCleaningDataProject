@@ -96,4 +96,4 @@ names(mergeData) <- gsub('___', "_", names(mergeData))
 newData <- aggregate(. ~ subject + activity, mergeData, mean)
 newData$dataset <- factor(newData$dataset, levels = levels(as.factor(newData$dataset)),
                              labels = levels(as.factor(mergeData$dataset)))
-write.csv(newData, file = "tidyDataset.csv")
+write.table(newData, file = "tidyDataset.txt", row.name=FALSE)
