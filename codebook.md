@@ -21,6 +21,6 @@ The R script called run_analysis.R does the following:
 
 ### Tidy data set new variables:
 
-* subject 
+* subject  identifies
 * activity
 * dataset 
