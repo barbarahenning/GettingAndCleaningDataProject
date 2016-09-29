@@ -21,6 +21,8 @@ The R script called run_analysis.R does the following:
 
 ### Tidy data set new variables:
 
-* subject  identifies
-* activity
-* dataset 
+* **subject**: identifies the subject who performed the activity
+* **activity**: identifies the activity performed (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING)
+* **dataset**: identifies if the subject was randomly selected for generating either the test or the training data set.
+
+* **following measurements**: the detailed description of each of the following measurements found in the tidy data set is available at the site where the original data was obtained.  Here, each of the measurements were averaged for each activity and each subject.
