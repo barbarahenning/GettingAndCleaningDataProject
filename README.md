@@ -1,7 +1,7 @@
 # Getting and Cleaning Data Project
 This repository contains the files required for the final project of Getting and Cleaning Data course.
 
-# To run the following script you should:
+## To run the following script you should:
 1. Download the original data set from:
  	https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 2. Unzip the downloaded file.
