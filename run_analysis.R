@@ -1,4 +1,21 @@
 ### Getting and Cleaning Data Course Project
+### Author:  Barbara Henning
+### 2016, October 03rd
+
+# This script performs the required steps for the final project from Getting and Cleaning Data Course.
+
+# The instructions for the script are the following:
+# 1. Merges the training and the test sets to create one data set.
+# 2. Extracts only the measurements on the mean and standard deviation for each measurement.
+# 3. Uses descriptive activity names to name the activities in the data set
+# 4. Appropriately labels the data set with descriptive variable names.
+# 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+# To run the following script you should:
+# 1. Download the original data set from:
+# https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+# 2. Unzip the downloaded file.
+# 3. Start running the following steps in the working directory created when you unziped the downloaded file.
 
 ###
 # 1. Merges the training and the test sets to create one data set.
@@ -50,7 +67,7 @@ colnames(testData)[c(1,3)] <- c('subject', 'activity')
 trainData <- cbind(trainSubjects, dataset='train', trainLabel, trainMeasure)
 colnames(trainData)[c(1,3)] <- c('subject', 'activity')
 
-mergeData <- rbind(trainData, testData)
+mergeData <- rbind(trainData, testData)  #merged data set with train and test data
 
 
 ###
@@ -58,7 +75,8 @@ mergeData <- rbind(trainData, testData)
 ###
 library(plyr)
 # looking for variables that are named with 'mean' or 'std'
-meanSd <- mergeData[, grep(".*[Mm]ean.*|.*std.*", colnames(mergeData))]
+meanSdData <- mergeData[, grep(".*[Mm]ean.*|.*std.*", colnames(mergeData))]
+meanSdData <- cbind(subject = mergeData$subject, dataset = mergeData$dataset, activity= mergeData$activity, meanSdData)
 
 
 ###
@@ -72,28 +90,28 @@ activityLabels <- read.table('activity_labels.txt')
 setwd(old.dir)
 # replacing numbers with descriptive names for activity variable
 head(activityLabels)
-mergeData$activity <- factor(mergeData$activity, levels = levels(as.factor(mergeData$activity)),
+meanSdData$activity <- factor(meanSdData$activity, levels = levels(as.factor(meanSdData$activity)),
                              labels = activityLabels$V2)
 
 ###
 # 4. Appropriately labels the data set with descriptive variable names.
 ###
-names(mergeData) <- gsub('Acc','Acceleration', names(mergeData))
-names(mergeData) <- gsub('GyroJerk','AngularAcceleration', names(mergeData))
-names(mergeData) <- gsub('iqr', 'InterquartileRange', names(mergeData))
-names(mergeData) <- gsub('sma', 'SignalMagnitudeArea', names(mergeData))
-names(mergeData) <- gsub('arCoeff', 'AutorregresionCoeff', names(mergeData))                         
-names(mergeData) <- gsub('Mag', 'Magnitude', names(mergeData))                         
-names(mergeData) <- gsub('\\()$', "", names(mergeData))
-names(mergeData) <- gsub('[-()]', "_", names(mergeData))
-names(mergeData) <- gsub('_$', "", names(mergeData))
-names(mergeData) <- gsub('___', "_", names(mergeData))
+names(meanSdData) <- gsub('Acc','Acceleration', names(meanSdData))
+names(meanSdData) <- gsub('GyroJerk','AngularAcceleration', names(meanSdData))
+names(meanSdData) <- gsub('iqr', 'InterquartileRange', names(meanSdData))
+names(meanSdData) <- gsub('sma', 'SignalMagnitudeArea', names(meanSdData))
+names(meanSdData) <- gsub('arCoeff', 'AutorregresionCoeff', names(meanSdData))                         
+names(meanSdData) <- gsub('Mag', 'Magnitude', names(meanSdData))                         
+names(meanSdData) <- gsub('\\()$', "", names(meanSdData))
+names(meanSdData) <- gsub('[-()]', "_", names(meanSdData))
+names(meanSdData) <- gsub('_$', "", names(meanSdData))
+names(meanSdData) <- gsub('___', "_", names(meanSdData))
 
 ###
 # 5. From the data set in step 4, creates a second, independent tidy data set 
 # with the average of each variable for each activity and each subject.
 ###
-newData <- aggregate(. ~ subject + activity, mergeData, mean)
+newData <- aggregate(. ~ subject + activity, meanSdData, mean)
 newData$dataset <- factor(newData$dataset, levels = levels(as.factor(newData$dataset)),
                              labels = levels(as.factor(mergeData$dataset)))
 write.table(newData, file = "tidyDataset.txt", row.name=FALSE)
