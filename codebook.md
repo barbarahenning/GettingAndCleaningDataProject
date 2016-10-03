@@ -1,11 +1,12 @@
 # Code book
-Author: Barbara Henning
+Author: Barbara Henning  
 2016, October 03rd
 
-This code book contains the information on the variables from `tidyDataset.csv` file.
+This code book contains the information about the variables on the `tidyDataset.csv` file.
 
 ## Description
-This code book contains the information about the variables, data and transformations performed for the final project for the Getting and Cleaning Data course.  The R script associated to this project is called `run_analysis.R` and can be found within the https://github.com/barbarahenning/GettingAndCleaningDataProject repo.  This script updates the data set found at http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones and returns `tidyDataset.csv` file also found within the https://github.com/barbarahenning/GettingAndCleaningDataProject repo.
+This code book contains the information about the variables, data and transformations performed for the final project for the Getting and Cleaning Data course.  The R script associated to this project is called `run_analysis.R` and can be found within the https://github.com/barbarahenning/GettingAndCleaningDataProject repo.   
+This script updates the data set found at http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones and returns `tidyDataset.csv` file also found within the https://github.com/barbarahenning/GettingAndCleaningDataProject repo.
 
 ## Project overview
 ### Original data is available here:
